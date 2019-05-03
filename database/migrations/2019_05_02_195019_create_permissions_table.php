@@ -14,7 +14,12 @@ class CreatePermissionsTable extends Migration
     public function up()
     {
         Schema::create('permissions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('slug')->unique();
+            $table->string('description')->nullable();
+            $table->integer('role_id')->unsigned()->index();
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');  // nuestra llave forania que hace referencia al id en la tabla roles
             $table->timestamps();
         });
     }

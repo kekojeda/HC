@@ -18,12 +18,8 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongToMany('App/User');
+        return $this->belongToMany('App/User')->withTimestamps();
     }
-
-
-
-
 
 //ALMACENAMIENTO
 
